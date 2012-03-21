@@ -33,6 +33,8 @@ class Lilypond < Formula
   skip_clean :all
 
   def install
+    ENV.llvm
+
     gs = Formula.factory('ghostscript')
     system "./configure", "--prefix=#{prefix}",
                           "--with-ncsb-dir=#{gs.share}/ghostscript/fonts/"
