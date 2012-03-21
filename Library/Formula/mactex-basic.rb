@@ -29,7 +29,7 @@ class MactexBasic < Formula
   def install
     prefix.install 'basictex20110803.pkg.zip.md5'
 
-    dir = '/usr/local/texlive/2011basic/bin/universal-darwin'
+    dir = Pathname.new '/usr/local/texlive/2011basic/bin/universal-darwin'
     %w[
       T1Wrap afm2tfm allcm allec allneeded bibtex dvi2fax dvilualatex
       dviluatex dvipdfm dvipdfmx dvipdft dvips dvired dvitomp ebb
@@ -44,7 +44,8 @@ class MactexBasic < Formula
       xdv2pdf xdvi xdvi-xaw xdvipdfmx xelatex xetex
     ].each do |f|
       t = HOMEBREW_PREFIX + 'bin' + File.basename(f)
-      ln_s f, t unless File.exists? t
+      #t.unlink
+      ln_s dir + f, t unless File.exists? t
     end
   end
 end
